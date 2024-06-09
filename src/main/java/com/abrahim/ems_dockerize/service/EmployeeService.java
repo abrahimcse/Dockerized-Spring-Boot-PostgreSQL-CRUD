@@ -10,4 +10,8 @@ public interface EmployeeService {
     EmployeeDto getEmployeeById(Integer employeeId);
 
     List<EmployeeDto> getALlEmployee();
+
+    EmployeeDto updateEmployee (Integer employeeId, EmployeeDto updateEmployee);
+
+    void deleteEmployee(Integer employeeId);
 }

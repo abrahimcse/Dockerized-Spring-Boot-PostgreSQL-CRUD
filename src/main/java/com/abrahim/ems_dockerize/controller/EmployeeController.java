@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+
     private EmployeeService employeeService;
 
     //Build Add Employee REST API
@@ -35,5 +36,20 @@ public class EmployeeController {
     public ResponseEntity<List<EmployeeDto>> getAllEmployee(){
         List<EmployeeDto> employees = employeeService.getALlEmployee();
         return ResponseEntity.ok(employees);
+    }
+
+    //Build Update Employee REST API
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Integer employeeId,
+                                                      @RequestBody EmployeeDto updateEmployee){
+        EmployeeDto employeeDto= employeeService.updateEmployee(employeeId, updateEmployee);
+        return ResponseEntity.ok(employeeDto);
+    }
+
+    //Build Delete Employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Integer employeeId){
+        employeeService.deleteEmployee(employeeId);
+        return  ResponseEntity.ok("Employee Delete Successfully!. given id : "+ employeeId);
     }
 }
